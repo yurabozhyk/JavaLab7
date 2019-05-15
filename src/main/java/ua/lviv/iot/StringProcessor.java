@@ -10,16 +10,12 @@ public class StringProcessor {
     public StringProcessor() {
     }
 
-    public StringProcessor(final String text) {
-        this.text = text;
+    public StringProcessor(final String textObj) {
+        this.text = textObj;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public final void setText(final String textObj) {
+        this.text = textObj;
     }
 
     public final void textProcessing() {
@@ -31,7 +27,7 @@ public class StringProcessor {
         for (String word : words) {
             Pattern patternIsNumber = Pattern.compile("\\d+");
             Matcher matcher = patternIsNumber.matcher(word);
-            if(!matcher.find()) {
+            if (!matcher.find()) {
                 processedText = processedText + word + " ";
             }
 
@@ -42,29 +38,25 @@ public class StringProcessor {
                 processedText = processedText + "EXPEL ";
             }
 
-
-            Pattern patternCommission = Pattern.compile("(^2[6-9]$)|" +
-                    "(^[3-4][0-9]$)");
+            Pattern patternCommission = Pattern.compile("(^2[6-9]$)|"
+                    + "(^[3-4][0-9]$)");
             Matcher matcherCommission = patternCommission.matcher(word);
             if (matcherCommission.find()) {
                 processedText = processedText + "COMMISSION ";
             }
 
-
-            Pattern patternSatisfactory = Pattern.compile("(^[5-6][0-9]$)|" +
-                    "(^70$)");
+            Pattern patternSatisfactory = Pattern.compile("(^[5-6][0-9]$)|"
+                    + "(^70$)");
             Matcher matcherSatisfactory = patternSatisfactory.matcher(word);
             if (matcherSatisfactory.find()) {
                 processedText = processedText + "SATISFACTORY ";
             }
-
 
             Pattern patternGood = Pattern.compile("(^7[1-9]$)|(^8[0-7]$)");
             Matcher matcherGood = patternGood.matcher(word);
             if (matcherGood.find()) {
                 processedText = processedText + "GOOD ";
             }
-
 
             Pattern patternExcellent = Pattern.compile(
                     "(^8[8-9]$)|(^9[0-9]$)|(^(100)$)");
